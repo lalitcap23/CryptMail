@@ -3,11 +3,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Mail } from 'lucide-react'; // Assuming you have an icon for messages
+import { Mail } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Autoplay from 'embla-carousel-autoplay';
-import messages from '@/messages.json';
-
 import {
   Carousel,
   CarouselContent,
@@ -15,6 +13,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+
+import messages from '@/messages.json' assert { type: 'json' };
 
 export default function Home() {
   return (
@@ -32,7 +32,7 @@ export default function Home() {
 
         {/* Carousel for Messages */}
         <Carousel
-          plugins={[Autoplay({ delay: 2000 })]}
+          plugins={[Autoplay({ delay: 2000, stopOnInteraction: false })]}
           className="w-full max-w-lg md:max-w-xl"
         >
           <CarouselContent>
@@ -43,10 +43,10 @@ export default function Home() {
                     <CardTitle>{message.title}</CardTitle>
                   </CardHeader>
                   <CardContent className="flex flex-col md:flex-row items-start space-y-2 md:space-y-0 md:space-x-4">
-                    <Mail className="flex-shrink-0" />
+                    <Mail className="flex-shrink-0 text-gray-400" />
                     <div>
                       <p>{message.content}</p>
-                      <p className="text-xs text-muted-foreground">
+                      <p className="text-xs text-gray-400">
                         {message.received}
                       </p>
                     </div>
